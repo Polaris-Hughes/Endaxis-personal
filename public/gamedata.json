@@ -10136,6 +10136,458 @@
           "damage_ticks": []
         }
       ]
+    },
+    {
+      "id": "ZHUANGFANGYI",
+      "name": "庄方宜",
+      "rarity": 6,
+      "element": "emag",
+      "weapon": "funnel",
+      "avatar": "/avatars/ZHUANGFANGYI/ZHUANGFANGYI.webp",
+      "exclusive_buffs": [
+        {
+          "key": "pulse_enhance",
+          "name": "电磁增幅",
+          "path": "/icons/icon_battle_affix_pulse_enhance.webp"
+        },
+        {
+          "key": "zhuangfy_sword",
+          "name": "青霆剑",
+          "path": "/avatars/ZHUANGFANGYI/icon_skill_zhuangfy_01.webp"
+        }
+      ],
+      "accept_team_gauge": true,
+      "attack_segments": [
+        {
+          "duration": 0.5,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.2,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            },
+            {
+              "offset": 0.267,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 0.5,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.67,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 0.867,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.467,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            },
+            {
+              "offset": 0.53,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 0.567,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.367,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 1.67,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.67,
+              "stagger": 18,
+              "sp": 18,
+              "boundEffects": []
+            }
+          ]
+        }
+      ],
+      "skill_duration": 1.5,
+      "skill_spCost": 100,
+      "skill_gaugeGain": 6.5,
+      "skill_teamGaugeGain": 6.5,
+      "skill_allowed_types": [
+        "zhuangfy_sword",
+        "pulse_enhance"
+      ],
+      "skill_anomalies": [
+        [
+          {
+            "_id": "ss3a4re",
+            "type": "zhuangfy_sword",
+            "stacks": 1,
+            "duration": 0,
+            "offset": 0.2
+          }
+        ],
+        [
+          {
+            "_id": "r6ei4y8",
+            "type": "pulse_enhance",
+            "stacks": 1,
+            "duration": 0,
+            "offset": 0.2
+          }
+        ]
+      ],
+      "skill_damage_ticks": [
+        {
+          "offset": 0.2,
+          "stagger": 15,
+          "sp": 0,
+          "boundEffects": [
+            "ss3a4re",
+            "r6ei4y8"
+          ]
+        }
+      ],
+      "skill_icon": "/avatars/ZHUANGFANGYI/icon_skill_zhuangfy_01.webp",
+      "link_duration": 0.83,
+      "link_cooldown": 18,
+      "link_gaugeGain": 10,
+      "link_allowed_types": [
+        "conductive",
+        "emag_attach",
+        "emag_burst"
+      ],
+      "link_anomalies": [],
+      "link_damage_ticks": [
+        {
+          "offset": 0.8,
+          "stagger": 10,
+          "sp": 0,
+          "boundEffects": []
+        }
+      ],
+      "link_icon": "/avatars/ZHUANGFANGYI/icon_combo_skill_zhuangfy_01.webp",
+      "ultimate_duration": 3,
+      "ultimate_gaugeMax": 240,
+      "ultimate_gaugeReply": 0,
+      "ultimate_enhancementTime": 25,
+      "ultimate_allowed_types": [],
+      "ultimate_anomalies": [],
+      "ultimate_damage_ticks": [],
+      "ultimate_animationTime": 2.6,
+      "ultimate_icon": "/avatars/ZHUANGFANGYI/icon_ultimate_skill_zhuangfy_01.webp",
+      "execution_duration": 1.5,
+      "execution_allowed_types": [
+        "break",
+        "armor_break",
+        "stagger",
+        "knockdown",
+        "knockup",
+        "blaze_attach",
+        "emag_attach",
+        "cold_attach",
+        "nature_attach",
+        "blaze_burst",
+        "emag_burst",
+        "cold_burst",
+        "nature_burst",
+        "burning",
+        "conductive",
+        "frozen",
+        "ice_shatter",
+        "corrosion"
+      ],
+      "execution_anomalies": [],
+      "execution_damage_ticks": [],
+      "dodge_duration": 0.5,
+      "variants": [
+        {
+          "id": "v_1776605099210",
+          "name": "强化重击",
+          "type": "attack",
+          "duration": 4.104,
+          "attackSegments": [
+            {
+              "duration": 0.73,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": [
+                {
+                  "offset": 0.267,
+                  "stagger": 0,
+                  "sp": 0,
+                  "boundEffects": []
+                }
+              ]
+            },
+            {
+              "duration": 0.9,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": [
+                {
+                  "offset": 0.3,
+                  "stagger": 0,
+                  "sp": 0,
+                  "boundEffects": []
+                }
+              ]
+            },
+            {
+              "duration": 2,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": [
+                {
+                  "offset": 1.1,
+                  "stagger": 18,
+                  "sp": 18,
+                  "boundEffects": []
+                }
+              ]
+            },
+            {
+              "duration": 0,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": []
+            },
+            {
+              "duration": 0,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "enemyDatabase": [
@@ -12252,6 +12704,26 @@
         },
         {
           "modifierId": "crit_rate",
+          "size": "large"
+        }
+      ],
+      "buffBonuses": []
+    },
+    {
+      "id": "wpn_funnel_0015",
+      "name": "孤舟",
+      "buffName": "流霆",
+      "type": "funnel",
+      "rarity": 6,
+      "duration": 20,
+      "icon": "/weapons/funnel/wpn_funnel_0015.webp",
+      "commonSlots": [
+        {
+          "modifierId": "will",
+          "size": "large"
+        },
+        {
+          "modifierId": "attack",
           "size": "large"
         }
       ],
@@ -19749,7 +20221,7 @@
           109
         ]
       },
-      "strength": {
+      "agility": {
         "small": [
           12,
           21,
@@ -19784,7 +20256,7 @@
           156
         ]
       },
-      "agility": {
+      "strength": {
         "small": [
           12,
           21,
@@ -19854,41 +20326,6 @@
           156
         ]
       },
-      "will": {
-        "small": [
-          12,
-          21,
-          31,
-          40,
-          50,
-          60,
-          69,
-          79,
-          93
-        ],
-        "medium": [
-          16,
-          28,
-          41,
-          54,
-          67,
-          80,
-          92,
-          105,
-          124
-        ],
-        "large": [
-          20,
-          36,
-          52,
-          68,
-          84,
-          100,
-          116,
-          132,
-          156
-        ]
-      },
       "attack": {
         "small": [
           3,
@@ -19924,39 +20361,39 @@
           39
         ]
       },
-      "hp": {
+      "will": {
         "small": [
-          6,
-          10.8,
-          15.6,
-          20.4,
-          25.2,
-          30,
-          34.8,
-          39.6,
-          46.8
+          12,
+          21,
+          31,
+          40,
+          50,
+          60,
+          69,
+          79,
+          93
         ],
         "medium": [
-          8,
-          14.4,
-          20.8,
-          27.2,
-          33.6,
-          40,
-          46.4,
-          52.8,
-          62.4
+          16,
+          28,
+          41,
+          54,
+          67,
+          80,
+          92,
+          105,
+          124
         ],
         "large": [
-          10,
-          18,
-          26,
-          34,
-          42,
-          50,
-          58,
-          66,
-          78
+          20,
+          36,
+          52,
+          68,
+          84,
+          100,
+          116,
+          132,
+          156
         ]
       },
       "crit_rate": {
@@ -19994,17 +20431,17 @@
           19.5
         ]
       },
-      "blaze_dmg": {
+      "physical_dmg": {
         "small": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
+          3.3,
+          6,
+          8.7,
+          11.3,
+          14,
+          16.7,
+          19.3,
+          22,
+          26
         ],
         "medium": [
           4.4,
@@ -20027,6 +20464,41 @@
           32.2,
           36.7,
           43.3
+        ]
+      },
+      "arts_dmg": {
+        "small": [
+          3.3,
+          6,
+          8.7,
+          11.3,
+          14,
+          16.7,
+          19.3,
+          22,
+          26
+        ],
+        "medium": [
+          4.4,
+          8,
+          11.6,
+          15.1,
+          18.7,
+          22.2,
+          25.8,
+          29.3,
+          34.7
+        ],
+        "large": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       "emag_dmg": {
@@ -20062,6 +20534,41 @@
           0,
           0,
           0
+        ]
+      },
+      "blaze_dmg": {
+        "small": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "medium": [
+          4.4,
+          8,
+          11.6,
+          15.1,
+          18.7,
+          22.2,
+          25.8,
+          29.3,
+          34.7
+        ],
+        "large": [
+          5.6,
+          10,
+          14.4,
+          18.9,
+          23.3,
+          27.8,
+          32.2,
+          36.7,
+          43.3
         ]
       },
       "cold_dmg": {
@@ -20134,6 +20641,41 @@
           0
         ]
       },
+      "hp": {
+        "small": [
+          6,
+          10.8,
+          15.6,
+          20.4,
+          25.2,
+          30,
+          34.8,
+          39.6,
+          46.8
+        ],
+        "medium": [
+          8,
+          14.4,
+          20.8,
+          27.2,
+          33.6,
+          40,
+          46.4,
+          52.8,
+          62.4
+        ],
+        "large": [
+          10,
+          18,
+          26,
+          34,
+          42,
+          50,
+          58,
+          66,
+          78
+        ]
+      },
       "healing_effect": {
         "small": [
           0,
@@ -20167,76 +20709,6 @@
           34.5,
           39.3,
           46.4
-        ]
-      },
-      "physical_dmg": {
-        "small": [
-          3.3,
-          6,
-          8.7,
-          11.3,
-          14,
-          16.7,
-          19.3,
-          22,
-          26
-        ],
-        "medium": [
-          4.4,
-          8,
-          11.6,
-          15.1,
-          18.7,
-          22.2,
-          25.8,
-          29.3,
-          34.7
-        ],
-        "large": [
-          5.6,
-          10,
-          14.4,
-          18.9,
-          23.3,
-          27.8,
-          32.2,
-          36.7,
-          43.3
-        ]
-      },
-      "arts_dmg": {
-        "small": [
-          3.3,
-          6,
-          8.7,
-          11.3,
-          14,
-          16.7,
-          19.3,
-          22,
-          26
-        ],
-        "medium": [
-          4.4,
-          8,
-          11.6,
-          15.1,
-          18.7,
-          22.2,
-          25.8,
-          29.3,
-          34.7
-        ],
-        "large": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
         ]
       },
       "originium_arts_power": {

@@ -5548,6 +5548,546 @@
       ]
     },
     {
+      "id": "ZHUANGFANGYI",
+      "name": "庄方宜",
+      "rarity": 6,
+      "element": "emag",
+      "weapon": "funnel",
+      "avatar": "/avatars/ZHUANGFANGYI/ZHUANGFANGYI.webp",
+      "exclusive_buffs": [
+        {
+          "key": "pulse_enhance",
+          "name": "电磁增幅",
+          "path": "/icons/icon_battle_affix_pulse_enhance.webp"
+        },
+        {
+          "key": "zhuangfy_sword",
+          "name": "青霆剑",
+          "path": "/avatars/ZHUANGFANGYI/icon_skill_zhuangfy_01.webp"
+        }
+      ],
+      "accept_team_gauge": true,
+      "attack_segments": [
+        {
+          "duration": 0.5,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.2,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            },
+            {
+              "offset": 0.267,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 0.5,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.67,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 0.867,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.467,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            },
+            {
+              "offset": 0.53,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 0.567,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.367,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ]
+        },
+        {
+          "duration": 1.67,
+          "gaugeGain": 0,
+          "allowed_types": [
+            "break",
+            "armor_break",
+            "stagger",
+            "knockdown",
+            "knockup",
+            "blaze_attach",
+            "emag_attach",
+            "cold_attach",
+            "nature_attach",
+            "blaze_burst",
+            "emag_burst",
+            "cold_burst",
+            "nature_burst",
+            "burning",
+            "conductive",
+            "frozen",
+            "ice_shatter",
+            "corrosion"
+          ],
+          "anomalies": [],
+          "damage_ticks": [
+            {
+              "offset": 0.67,
+              "stagger": 18,
+              "sp": 18,
+              "boundEffects": []
+            }
+          ]
+        }
+      ],
+      "skill_duration": 1.5,
+      "skill_spCost": 100,
+      "skill_gaugeGain": 6.5,
+      "skill_teamGaugeGain": 6.5,
+      "skill_allowed_types": [
+        "zhuangfy_sword",
+        "pulse_enhance"
+      ],
+      "skill_anomalies": [
+        [
+          {
+            "_id": "ss3a4re",
+            "type": "zhuangfy_sword",
+            "stacks": 1,
+            "duration": 0,
+            "offset": 0.2
+          }
+        ],
+        [
+          {
+            "_id": "r6ei4y8",
+            "type": "pulse_enhance",
+            "stacks": 1,
+            "duration": 0,
+            "offset": 0.2
+          }
+        ]
+      ],
+      "skill_damage_ticks": [
+        {
+          "offset": 0.2,
+          "stagger": 15,
+          "sp": 0,
+          "boundEffects": [
+            "ss3a4re",
+            "r6ei4y8"
+          ]
+        }
+      ],
+      "skill_icon": "/avatars/ZHUANGFANGYI/icon_skill_zhuangfy_01.webp",
+      "link_duration": 0.83,
+      "link_cooldown": 18,
+      "link_gaugeGain": 10,
+      "link_allowed_types": [
+        "conductive",
+        "emag_attach",
+        "emag_burst"
+      ],
+      "link_anomalies": [],
+      "link_damage_ticks": [
+        {
+          "offset": 0.8,
+          "stagger": 10,
+          "sp": 0,
+          "boundEffects": []
+        }
+      ],
+      "link_icon": "/avatars/ZHUANGFANGYI/icon_combo_skill_zhuangfy_01.webp",
+      "ultimate_duration": 3,
+      "ultimate_gaugeMax": 240,
+      "ultimate_gaugeReply": 0,
+      "ultimate_enhancementTime": 25,
+      "ultimate_allowed_types": [],
+      "ultimate_anomalies": [],
+      "ultimate_damage_ticks": [],
+      "ultimate_animationTime": 2.6,
+      "ultimate_icon": "/avatars/ZHUANGFANGYI/icon_ultimate_skill_zhuangfy_01.webp",
+      "execution_duration": 1.5,
+      "execution_allowed_types": [
+        "break",
+        "armor_break",
+        "stagger",
+        "knockdown",
+        "knockup",
+        "blaze_attach",
+        "emag_attach",
+        "cold_attach",
+        "nature_attach",
+        "blaze_burst",
+        "emag_burst",
+        "cold_burst",
+        "nature_burst",
+        "burning",
+        "conductive",
+        "frozen",
+        "ice_shatter",
+        "corrosion"
+      ],
+      "execution_anomalies": [],
+      "execution_damage_ticks": [],
+      "dodge_duration": 0.5,
+      "variants": [
+        {
+          "id": "v_1776605099210",
+          "name": "强化重击",
+          "type": "attack",
+          "duration": 4.104,
+          "attackSegments": [
+            {
+              "duration": 0.73,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": [
+                {
+                  "offset": 0.267,
+                  "stagger": 0,
+                  "sp": 0,
+                  "boundEffects": []
+                }
+              ]
+            },
+            {
+              "duration": 0.9,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": [
+                {
+                  "offset": 0.3,
+                  "stagger": 0,
+                  "sp": 0,
+                  "boundEffects": []
+                }
+              ]
+            },
+            {
+              "duration": 2,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": [
+                {
+                  "offset": 1.1,
+                  "stagger": 18,
+                  "sp": 18,
+                  "boundEffects": []
+                }
+              ]
+            },
+            {
+              "duration": 0,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": []
+            },
+            {
+              "duration": 0,
+              "gaugeGain": 0,
+              "allowedTypes": [
+                "break",
+                "armor_break",
+                "stagger",
+                "knockdown",
+                "knockup",
+                "blaze_attach",
+                "emag_attach",
+                "cold_attach",
+                "nature_attach",
+                "blaze_burst",
+                "emag_burst",
+                "cold_burst",
+                "nature_burst",
+                "burning",
+                "conductive",
+                "frozen",
+                "ice_shatter",
+                "corrosion"
+              ],
+              "physicalAnomaly": [],
+              "damageTicks": []
+            }
+          ]
+        },
+        {
+          "id": "v_1777131372592",
+          "name": "强化战技",
+          "type": "skill",
+          "duration": 1.5,
+          "icon": "/avatars/ZHUANGFANGYI/icon_skill_zhuangfy_01.webp",
+          "allowedTypes": [
+            "zhuangfy_sword",
+            "pulse_enhance",
+            "emag_attach",
+            "emag_burst",
+            "conductive"
+          ],
+          "physicalAnomaly": [
+            [
+              {
+                "_id": "ss3a4re",
+                "type": "zhuangfy_sword",
+                "stacks": 1,
+                "duration": 0,
+                "offset": 0.2
+              }
+            ],
+            [
+              {
+                "_id": "r6ei4y8",
+                "type": "pulse_enhance",
+                "stacks": 1,
+                "duration": 0,
+                "offset": 0.2
+              }
+            ],
+            [
+              {
+                "_id": "x3pzwt7",
+                "type": "emag_attach",
+                "stacks": 1,
+                "duration": 0,
+                "offset": 1
+              }
+            ]
+          ],
+          "damageTicks": [
+            {
+              "offset": 0.2,
+              "stagger": 15,
+              "sp": 0,
+              "boundEffects": [
+                "ss3a4re",
+                "r6ei4y8"
+              ]
+            },
+            {
+              "offset": 1,
+              "stagger": 0,
+              "sp": 0,
+              "boundEffects": [
+                "x3pzwt7"
+              ]
+            }
+          ],
+          "spCost": 100,
+          "gaugeGain": 6.5,
+          "teamGaugeGain": 6.5
+        },
+        {
+          "id": "v_1777131508021",
+          "name": "强化连携",
+          "type": "link",
+          "duration": 0.83,
+          "icon": "/avatars/ZHUANGFANGYI/icon_combo_skill_zhuangfy_01.webp",
+          "allowedTypes": [
+            "conductive",
+            "emag_attach",
+            "emag_burst"
+          ],
+          "physicalAnomaly": [],
+          "damageTicks": [
+            {
+              "offset": 0.8,
+              "stagger": 10,
+              "sp": 0,
+              "boundEffects": []
+            }
+          ],
+          "cooldown": 4.5,
+          "gaugeGain": 10
+        }
+      ]
+    },
+    {
       "id": "XAIHI",
       "name": "赛希",
       "rarity": 5,
@@ -10134,458 +10674,6 @@
           ],
           "anomalies": [],
           "damage_ticks": []
-        }
-      ]
-    },
-    {
-      "id": "ZHUANGFANGYI",
-      "name": "庄方宜",
-      "rarity": 6,
-      "element": "emag",
-      "weapon": "funnel",
-      "avatar": "/avatars/ZHUANGFANGYI/ZHUANGFANGYI.webp",
-      "exclusive_buffs": [
-        {
-          "key": "pulse_enhance",
-          "name": "电磁增幅",
-          "path": "/icons/icon_battle_affix_pulse_enhance.webp"
-        },
-        {
-          "key": "zhuangfy_sword",
-          "name": "青霆剑",
-          "path": "/avatars/ZHUANGFANGYI/icon_skill_zhuangfy_01.webp"
-        }
-      ],
-      "accept_team_gauge": true,
-      "attack_segments": [
-        {
-          "duration": 0.5,
-          "gaugeGain": 0,
-          "allowed_types": [
-            "break",
-            "armor_break",
-            "stagger",
-            "knockdown",
-            "knockup",
-            "blaze_attach",
-            "emag_attach",
-            "cold_attach",
-            "nature_attach",
-            "blaze_burst",
-            "emag_burst",
-            "cold_burst",
-            "nature_burst",
-            "burning",
-            "conductive",
-            "frozen",
-            "ice_shatter",
-            "corrosion"
-          ],
-          "anomalies": [],
-          "damage_ticks": [
-            {
-              "offset": 0.2,
-              "stagger": 0,
-              "sp": 0,
-              "boundEffects": []
-            },
-            {
-              "offset": 0.267,
-              "stagger": 0,
-              "sp": 0,
-              "boundEffects": []
-            }
-          ]
-        },
-        {
-          "duration": 0.5,
-          "gaugeGain": 0,
-          "allowed_types": [
-            "break",
-            "armor_break",
-            "stagger",
-            "knockdown",
-            "knockup",
-            "blaze_attach",
-            "emag_attach",
-            "cold_attach",
-            "nature_attach",
-            "blaze_burst",
-            "emag_burst",
-            "cold_burst",
-            "nature_burst",
-            "burning",
-            "conductive",
-            "frozen",
-            "ice_shatter",
-            "corrosion"
-          ],
-          "anomalies": [],
-          "damage_ticks": [
-            {
-              "offset": 0.67,
-              "stagger": 0,
-              "sp": 0,
-              "boundEffects": []
-            }
-          ]
-        },
-        {
-          "duration": 0.867,
-          "gaugeGain": 0,
-          "allowed_types": [
-            "break",
-            "armor_break",
-            "stagger",
-            "knockdown",
-            "knockup",
-            "blaze_attach",
-            "emag_attach",
-            "cold_attach",
-            "nature_attach",
-            "blaze_burst",
-            "emag_burst",
-            "cold_burst",
-            "nature_burst",
-            "burning",
-            "conductive",
-            "frozen",
-            "ice_shatter",
-            "corrosion"
-          ],
-          "anomalies": [],
-          "damage_ticks": [
-            {
-              "offset": 0.467,
-              "stagger": 0,
-              "sp": 0,
-              "boundEffects": []
-            },
-            {
-              "offset": 0.53,
-              "stagger": 0,
-              "sp": 0,
-              "boundEffects": []
-            }
-          ]
-        },
-        {
-          "duration": 0.567,
-          "gaugeGain": 0,
-          "allowed_types": [
-            "break",
-            "armor_break",
-            "stagger",
-            "knockdown",
-            "knockup",
-            "blaze_attach",
-            "emag_attach",
-            "cold_attach",
-            "nature_attach",
-            "blaze_burst",
-            "emag_burst",
-            "cold_burst",
-            "nature_burst",
-            "burning",
-            "conductive",
-            "frozen",
-            "ice_shatter",
-            "corrosion"
-          ],
-          "anomalies": [],
-          "damage_ticks": [
-            {
-              "offset": 0.367,
-              "stagger": 0,
-              "sp": 0,
-              "boundEffects": []
-            }
-          ]
-        },
-        {
-          "duration": 1.67,
-          "gaugeGain": 0,
-          "allowed_types": [
-            "break",
-            "armor_break",
-            "stagger",
-            "knockdown",
-            "knockup",
-            "blaze_attach",
-            "emag_attach",
-            "cold_attach",
-            "nature_attach",
-            "blaze_burst",
-            "emag_burst",
-            "cold_burst",
-            "nature_burst",
-            "burning",
-            "conductive",
-            "frozen",
-            "ice_shatter",
-            "corrosion"
-          ],
-          "anomalies": [],
-          "damage_ticks": [
-            {
-              "offset": 0.67,
-              "stagger": 18,
-              "sp": 18,
-              "boundEffects": []
-            }
-          ]
-        }
-      ],
-      "skill_duration": 1.5,
-      "skill_spCost": 100,
-      "skill_gaugeGain": 6.5,
-      "skill_teamGaugeGain": 6.5,
-      "skill_allowed_types": [
-        "zhuangfy_sword",
-        "pulse_enhance"
-      ],
-      "skill_anomalies": [
-        [
-          {
-            "_id": "ss3a4re",
-            "type": "zhuangfy_sword",
-            "stacks": 1,
-            "duration": 0,
-            "offset": 0.2
-          }
-        ],
-        [
-          {
-            "_id": "r6ei4y8",
-            "type": "pulse_enhance",
-            "stacks": 1,
-            "duration": 0,
-            "offset": 0.2
-          }
-        ]
-      ],
-      "skill_damage_ticks": [
-        {
-          "offset": 0.2,
-          "stagger": 15,
-          "sp": 0,
-          "boundEffects": [
-            "ss3a4re",
-            "r6ei4y8"
-          ]
-        }
-      ],
-      "skill_icon": "/avatars/ZHUANGFANGYI/icon_skill_zhuangfy_01.webp",
-      "link_duration": 0.83,
-      "link_cooldown": 18,
-      "link_gaugeGain": 10,
-      "link_allowed_types": [
-        "conductive",
-        "emag_attach",
-        "emag_burst"
-      ],
-      "link_anomalies": [],
-      "link_damage_ticks": [
-        {
-          "offset": 0.8,
-          "stagger": 10,
-          "sp": 0,
-          "boundEffects": []
-        }
-      ],
-      "link_icon": "/avatars/ZHUANGFANGYI/icon_combo_skill_zhuangfy_01.webp",
-      "ultimate_duration": 3,
-      "ultimate_gaugeMax": 240,
-      "ultimate_gaugeReply": 0,
-      "ultimate_enhancementTime": 25,
-      "ultimate_allowed_types": [],
-      "ultimate_anomalies": [],
-      "ultimate_damage_ticks": [],
-      "ultimate_animationTime": 2.6,
-      "ultimate_icon": "/avatars/ZHUANGFANGYI/icon_ultimate_skill_zhuangfy_01.webp",
-      "execution_duration": 1.5,
-      "execution_allowed_types": [
-        "break",
-        "armor_break",
-        "stagger",
-        "knockdown",
-        "knockup",
-        "blaze_attach",
-        "emag_attach",
-        "cold_attach",
-        "nature_attach",
-        "blaze_burst",
-        "emag_burst",
-        "cold_burst",
-        "nature_burst",
-        "burning",
-        "conductive",
-        "frozen",
-        "ice_shatter",
-        "corrosion"
-      ],
-      "execution_anomalies": [],
-      "execution_damage_ticks": [],
-      "dodge_duration": 0.5,
-      "variants": [
-        {
-          "id": "v_1776605099210",
-          "name": "强化重击",
-          "type": "attack",
-          "duration": 4.104,
-          "attackSegments": [
-            {
-              "duration": 0.73,
-              "gaugeGain": 0,
-              "allowedTypes": [
-                "break",
-                "armor_break",
-                "stagger",
-                "knockdown",
-                "knockup",
-                "blaze_attach",
-                "emag_attach",
-                "cold_attach",
-                "nature_attach",
-                "blaze_burst",
-                "emag_burst",
-                "cold_burst",
-                "nature_burst",
-                "burning",
-                "conductive",
-                "frozen",
-                "ice_shatter",
-                "corrosion"
-              ],
-              "physicalAnomaly": [],
-              "damageTicks": [
-                {
-                  "offset": 0.267,
-                  "stagger": 0,
-                  "sp": 0,
-                  "boundEffects": []
-                }
-              ]
-            },
-            {
-              "duration": 0.9,
-              "gaugeGain": 0,
-              "allowedTypes": [
-                "break",
-                "armor_break",
-                "stagger",
-                "knockdown",
-                "knockup",
-                "blaze_attach",
-                "emag_attach",
-                "cold_attach",
-                "nature_attach",
-                "blaze_burst",
-                "emag_burst",
-                "cold_burst",
-                "nature_burst",
-                "burning",
-                "conductive",
-                "frozen",
-                "ice_shatter",
-                "corrosion"
-              ],
-              "physicalAnomaly": [],
-              "damageTicks": [
-                {
-                  "offset": 0.3,
-                  "stagger": 0,
-                  "sp": 0,
-                  "boundEffects": []
-                }
-              ]
-            },
-            {
-              "duration": 2,
-              "gaugeGain": 0,
-              "allowedTypes": [
-                "break",
-                "armor_break",
-                "stagger",
-                "knockdown",
-                "knockup",
-                "blaze_attach",
-                "emag_attach",
-                "cold_attach",
-                "nature_attach",
-                "blaze_burst",
-                "emag_burst",
-                "cold_burst",
-                "nature_burst",
-                "burning",
-                "conductive",
-                "frozen",
-                "ice_shatter",
-                "corrosion"
-              ],
-              "physicalAnomaly": [],
-              "damageTicks": [
-                {
-                  "offset": 1.1,
-                  "stagger": 18,
-                  "sp": 18,
-                  "boundEffects": []
-                }
-              ]
-            },
-            {
-              "duration": 0,
-              "gaugeGain": 0,
-              "allowedTypes": [
-                "break",
-                "armor_break",
-                "stagger",
-                "knockdown",
-                "knockup",
-                "blaze_attach",
-                "emag_attach",
-                "cold_attach",
-                "nature_attach",
-                "blaze_burst",
-                "emag_burst",
-                "cold_burst",
-                "nature_burst",
-                "burning",
-                "conductive",
-                "frozen",
-                "ice_shatter",
-                "corrosion"
-              ],
-              "physicalAnomaly": [],
-              "damageTicks": []
-            },
-            {
-              "duration": 0,
-              "gaugeGain": 0,
-              "allowedTypes": [
-                "break",
-                "armor_break",
-                "stagger",
-                "knockdown",
-                "knockup",
-                "blaze_attach",
-                "emag_attach",
-                "cold_attach",
-                "nature_attach",
-                "blaze_burst",
-                "emag_burst",
-                "cold_burst",
-                "nature_burst",
-                "burning",
-                "conductive",
-                "frozen",
-                "ice_shatter",
-                "corrosion"
-              ],
-              "physicalAnomaly": [],
-              "damageTicks": []
-            }
-          ]
         }
       ]
     }
@@ -19950,6 +20038,536 @@
           ]
         }
       }
+    },
+    {
+      "id": "item_equip_t4_suit_expend_spell01_body_01",
+      "name": "壤流轻甲",
+      "category": "壤流",
+      "slot": "armor",
+      "level": 70,
+      "icon": "/equipment/expendspell01/item_equip_t4_suit_expend_spell01_body_01.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "will",
+          "values": [
+            87,
+            95,
+            104,
+            113
+          ]
+        },
+        "primary2": {
+          "modifierId": "intellect",
+          "values": [
+            58,
+            63,
+            69,
+            75
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "cold_dmg",
+              "values": [
+                11.5,
+                12.7,
+                13.8,
+                14.9
+              ]
+            },
+            {
+              "modifierId": "emag_dmg",
+              "values": [
+                11.5,
+                12.7,
+                13.8,
+                14.9
+              ]
+            }
+          ],
+          "modifierIds": [
+            "cold_dmg",
+            "emag_dmg"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_expend_spell01_hand_01",
+      "name": "壤流护手",
+      "category": "壤流",
+      "slot": "gloves",
+      "level": 70,
+      "icon": "/equipment/expendspell01/item_equip_t4_suit_expend_spell01_hand_01.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "will",
+          "values": [
+            65,
+            71,
+            78,
+            84
+          ]
+        },
+        "primary2": {
+          "modifierId": "intellect",
+          "values": [
+            43,
+            47,
+            51,
+            55
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "emag_dmg",
+              "values": [
+                19.2,
+                21.1,
+                23,
+                24.9
+              ]
+            },
+            {
+              "modifierId": "cold_dmg",
+              "values": [
+                19.2,
+                21.1,
+                23,
+                24.9
+              ]
+            }
+          ],
+          "modifierIds": [
+            "emag_dmg",
+            "cold_dmg"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_expend_spell01_edc_01",
+      "name": "壤流短棍",
+      "category": "壤流",
+      "slot": "accessory",
+      "level": 70,
+      "icon": "/equipment/expendspell01/item_equip_t4_suit_expend_spell01_edc_01.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "will",
+          "values": [
+            32,
+            35,
+            38,
+            41
+          ]
+        },
+        "primary2": {
+          "modifierId": "intellect",
+          "values": [
+            21,
+            23,
+            25,
+            27
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "skill_dmg_bonus",
+              "values": [
+                41.4,
+                45.5,
+                49.7,
+                53.8
+              ]
+            }
+          ],
+          "modifierIds": [
+            "skill_dmg_bonus"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_combo_cd01_body_01",
+      "name": "清波重甲",
+      "category": "清波",
+      "slot": "armor",
+      "level": 70,
+      "icon": "/equipment/combocd01/item_equip_t4_suit_combo_cd01_body_01.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "agility",
+          "values": [
+            87,
+            95,
+            104,
+            113
+          ]
+        },
+        "primary2": {
+          "modifierId": "strength",
+          "values": [
+            58,
+            63,
+            69,
+            75
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "ult_charge_eff",
+              "values": [
+                12.3,
+                13.6,
+                14.8,
+                16
+              ]
+            }
+          ],
+          "modifierIds": [
+            "ult_charge_eff"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_combo_cd01_body_02",
+      "name": "清波轻甲",
+      "category": "清波",
+      "slot": "armor",
+      "level": 70,
+      "icon": "/equipment/combocd01/item_equip_t4_suit_combo_cd01_body_02.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "intellect",
+          "values": [
+            87,
+            95,
+            104,
+            113
+          ]
+        },
+        "primary2": {
+          "modifierId": "will",
+          "values": [
+            58,
+            63,
+            69,
+            75
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "originium_arts_power",
+              "values": [
+                20,
+                22,
+                24,
+                26
+              ]
+            }
+          ],
+          "modifierIds": [
+            "originium_arts_power"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_combo_cd01_hand_01",
+      "name": "清波手甲",
+      "category": "清波",
+      "slot": "gloves",
+      "level": 70,
+      "icon": "/equipment/combocd01/item_equip_t4_suit_combo_cd01_hand_01.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "agility",
+          "values": [
+            65,
+            71,
+            78,
+            84
+          ]
+        },
+        "primary2": {
+          "modifierId": "strength",
+          "values": [
+            43,
+            47,
+            51,
+            55
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "all_skill_dmg_bonus",
+              "values": [
+                23,
+                25.3,
+                27.6,
+                29.9
+              ]
+            }
+          ],
+          "modifierIds": [
+            "all_skill_dmg_bonus"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_combo_cd01_hand_02",
+      "name": "清波护手",
+      "category": "清波",
+      "slot": "gloves",
+      "level": 70,
+      "icon": "/equipment/combocd01/item_equip_t4_suit_combo_cd01_hand_02.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "intellect",
+          "values": [
+            65,
+            71,
+            78,
+            84
+          ]
+        },
+        "primary2": {
+          "modifierId": "will",
+          "values": [
+            43,
+            47,
+            51,
+            55
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "ult_charge_eff",
+              "values": [
+                20.5,
+                22.6,
+                24.6,
+                26.7
+              ]
+            }
+          ],
+          "modifierIds": [
+            "ult_charge_eff"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_combo_cd01_edc_01",
+      "name": "清波定位仪",
+      "category": "清波",
+      "slot": "accessory",
+      "level": 70,
+      "icon": "/equipment/combocd01/item_equip_t4_suit_combo_cd01_edc_01.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "agility",
+          "values": [
+            32,
+            35,
+            38,
+            41
+          ]
+        },
+        "primary2": {
+          "modifierId": "strength",
+          "values": [
+            21,
+            23,
+            25,
+            27
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "skill_dmg_bonus",
+              "values": [
+                41.4,
+                45.5,
+                49.7,
+                53.8
+              ]
+            }
+          ],
+          "modifierIds": [
+            "skill_dmg_bonus"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_combo_cd01_edc_02",
+      "name": "清波竹刃",
+      "category": "清波",
+      "slot": "accessory",
+      "level": 70,
+      "icon": "/equipment/combocd01/item_equip_t4_suit_combo_cd01_edc_02.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "strength",
+          "values": [
+            32,
+            35,
+            38,
+            41
+          ]
+        },
+        "primary2": {
+          "modifierId": "agility",
+          "values": [
+            21,
+            23,
+            25,
+            27
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "blaze_dmg",
+              "values": [
+                23,
+                25.3,
+                27.6,
+                29.9
+              ]
+            },
+            {
+              "modifierId": "nature_dmg",
+              "values": [
+                23,
+                25.3,
+                27.6,
+                29.9
+              ]
+            }
+          ],
+          "modifierIds": [
+            "blaze_dmg",
+            "nature_dmg"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": "item_equip_t4_suit_combo_cd01_edc_03",
+      "name": "清波水罐",
+      "category": "清波",
+      "slot": "accessory",
+      "level": 70,
+      "icon": "/equipment/combocd01/item_equip_t4_suit_combo_cd01_edc_03.webp",
+      "affixes": {
+        "primary1": {
+          "modifierId": "intellect",
+          "values": [
+            32,
+            35,
+            38,
+            41
+          ]
+        },
+        "primary2": {
+          "modifierId": "will",
+          "values": [
+            21,
+            23,
+            25,
+            27
+          ]
+        },
+        "adapter": {
+          "entries": [
+            {
+              "modifierId": "originium_arts_power",
+              "values": [
+                41,
+                45,
+                49,
+                53
+              ]
+            }
+          ],
+          "modifierIds": [
+            "originium_arts_power"
+          ],
+          "values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
     }
   ],
   "equipmentCategories": [
@@ -19973,7 +20591,9 @@
     "M.I.警用",
     "50式应龙",
     "潮涌",
-    "长息"
+    "长息",
+    "壤流",
+    "清波"
   ],
   "equipmentCategoryConfigs": {
     "武陵": {
@@ -20080,6 +20700,16 @@
       "setBonus": {
         "duration": 15
       }
+    },
+    "壤流": {
+      "setBonus": {
+        "duration": 25
+      }
+    },
+    "清波": {
+      "setBonus": {
+        "duration": 15
+      }
     }
   },
   "misc": {
@@ -20183,6 +20813,10 @@
       {
         "id": "broken_dmg_bonus",
         "label": "对失衡目标伤害加成提升"
+      },
+      {
+        "id": "crit_dmg",
+        "label": "暴击伤害提升"
       }
     ],
     "weaponCommonModifiers": {

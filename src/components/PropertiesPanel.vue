@@ -577,7 +577,7 @@ function handleStartConnection(id, type = null) {
   if (resolvedType === 'action') {
     rect = store.nodeRects?.[id]?.rect || null
   } else if (resolvedType === 'effect') {
-    rect = store.effectLayouts.get(id)?.rect || null
+    rect = store.enemyEffectLayouts.get(id)?.rect || store.effectLayouts.get(id)?.rect || null
   } else if (resolvedType === 'status') {
     rect = store.statusNodeRects.get(id)?.rect || null
   }

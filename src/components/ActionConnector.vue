@@ -97,9 +97,13 @@ const getRectByNodeId = (nodeId, { connection = null, isSource = false } = {}) =
   if (info.type === 'effect') {
     if (isSource && connection?.isConsumption) {
       const transferId = `${nodeId}_transfer`
+      const enemyTransferLayout = store.enemyEffectLayouts.get(transferId)
+      if (enemyTransferLayout?.rect) return enemyTransferLayout.rect
       const transferLayout = store.effectLayouts.get(transferId)
       if (transferLayout?.rect) return transferLayout.rect
     }
+    const enemyLayout = store.enemyEffectLayouts.get(nodeId)
+    if (enemyLayout?.rect) return enemyLayout.rect
     const layout = store.effectLayouts.get(nodeId)
     return layout?.rect || null
   }

@@ -277,6 +277,11 @@ export const useTimelineStore = defineStore('timeline', () => {
 
     const getColor = (key) => ELEMENT_COLORS[key] || ELEMENT_COLORS.default
 
+    const isEnemyEffectType = (type) => {
+        if (!type || type === 'default') return false
+        return Boolean(iconDatabase.value?.[type])
+    }
+
     const ENEMY_TIERS = [
         { labelKey: 'enemyTier.normal', label: '普通', value: 'normal', color: '#a0a0a0' },
         { labelKey: 'enemyTier.elite', label: '进阶', value: 'elite', color: '#52c41a' },
@@ -667,6 +672,7 @@ export const useTimelineStore = defineStore('timeline', () => {
     const timelineRect = ref({ width: 0, height: 0, top: 0, left: 0, right: 0, bottom: 0 })
 
     const trackLaneRects = ref({})
+    const enemyStatusLaneRect = ref(null)
 
     const showCursorGuide = ref(false)
     const cursorPosition = ref({ x: 0, y: 0 })
@@ -2078,6 +2084,7 @@ export const useTimelineStore = defineStore('timeline', () => {
     function setScrollTop(val) { timelineScrollTop.value = val }
     function setTimelineRect(width, height, top, right, bottom, left) { timelineRect.value = { width, height, top, left, right, bottom } }
     function setTrackLaneRect(trackId, rect) { trackLaneRects.value[trackId] = rect }
+    function setEnemyStatusLaneRect(rect) { enemyStatusLaneRect.value = rect }
     function setNodeRect(nodeId, rect) { nodeRects.value[nodeId] = rect }
     function setCursorPosition(x, y) { cursorPosition.value = { x, y } }
     function toggleCursorGuide() { showCursorGuide.value = !showCursorGuide.value }
@@ -3235,6 +3242,117 @@ export const useTimelineStore = defineStore('timeline', () => {
         return useNewCompiler.value ? newEffectLayouts.value : legacyEffectLayouts.value;
     });
 
+    const enemyEffectLayouts = computed(() => {
+        const map = new Map()
+        const laneRect = enemyStatusLaneRect.value
+        if (!laneRect) return map
+
+        const ICON_SIZE = 20
+        const BAR_MARGIN = 2
+        const ROW_GAP = 3
+        const TOP_PADDING = 6
+        const laneTop = laneRect.top - timelineRect.value.top
+
+        const items = []
+        effectLayouts.value.forEach((layout, effectId) => {
+            if (String(effectId).endsWith('_transfer')) return
+            const type = layout?.data?.type
+            if (!isEnemyEffectType(type)) return
+
+            const wrap = effectsMap.value.get(effectId)
+            if (!wrap) return
+
+            const left = Number(layout.rect?.left) || 0
+            const width = ICON_SIZE + BAR_MARGIN + (Number(layout.barData?.width) || 0)
+            items.push({
+                effectId,
+                layout,
+                wrap,
+                left,
+                right: left + Math.max(ICON_SIZE, width),
+            })
+        })
+
+        const isAttachType = (type) => typeof type === 'string' && type.endsWith('_attach')
+        const hasAttachItems = items.some(item => isAttachType(item.layout?.data?.type))
+        const attachRowCount = hasAttachItems ? 1 : 0
+
+        items.forEach(item => {
+            const type = item.layout?.data?.type
+            if (!isAttachType(type)) {
+                item.stackCount = Number(item.layout?.data?.stacks) || 1
+                return
+            }
+            const itemStart = item.left
+            const itemEnd = item.right
+            let activeCount = 0
+            items.forEach(other => {
+                if (other.layout?.data?.type !== type) return
+                const otherStart = other.left
+                const otherEnd = other.right
+                if (otherStart <= itemEnd + 0.001 && otherEnd >= itemStart - 0.001) {
+                    activeCount += Number(other.layout?.data?.stacks) || 1
+                }
+            })
+            item.stackCount = Math.max(Number(item.layout?.data?.stacks) || 1, activeCount)
+        })
+
+        items.sort((a, b) => a.left - b.left || a.effectId.localeCompare(b.effectId))
+
+        const rowRights = []
+        for (const item of items) {
+            const type = item.layout?.data?.type
+            let rowIndex
+            if (isAttachType(type)) {
+                rowIndex = 0
+            } else {
+                const freeRowIndex = rowRights.findIndex(right => right + 4 <= item.left)
+                if (freeRowIndex < 0) {
+                    rowIndex = attachRowCount + rowRights.length
+                    rowRights.push(item.right)
+                } else {
+                    rowIndex = attachRowCount + freeRowIndex
+                    rowRights[freeRowIndex] = item.right
+                }
+            }
+
+            const top = laneTop + TOP_PADDING + rowIndex * (ICON_SIZE + ROW_GAP)
+            const rect = {
+                ...item.layout.rect,
+                top,
+                height: ICON_SIZE,
+                width: ICON_SIZE,
+                right: item.left + ICON_SIZE,
+            }
+
+            map.set(item.effectId, {
+                ...item.layout,
+                rect,
+                actionId: item.wrap.actionId,
+                rowIndex: item.wrap.rowIndex,
+                colIndex: item.wrap.colIndex,
+                flatIndex: item.wrap.flatIndex,
+                stackCount: item.stackCount,
+            })
+
+            if (item.layout.barData?.isConsumed) {
+                const barLeft = rect.left + ICON_SIZE + BAR_MARGIN
+                const barRight = barLeft + (Number(item.layout.barData.width) || 0)
+                map.set(`${item.effectId}_transfer`, {
+                    rect: {
+                        left: barRight,
+                        width: 0,
+                        right: barRight,
+                        height: ICON_SIZE,
+                        top,
+                    }
+                })
+            }
+        }
+
+        return map
+    })
+
     const newEffectLayouts = computed(() => {
         const layoutMap = new Map()
         const ICON_SIZE = 20
@@ -3542,6 +3660,8 @@ export const useTimelineStore = defineStore('timeline', () => {
 
     function getNodeRect(id) {
         if (nodeRects.value[id]) return nodeRects.value[id]
+        const enemyEffectLayout = enemyEffectLayouts.value.get(id)
+        if (enemyEffectLayout) return enemyEffectLayout.rect
         const effectLayout = effectLayouts.value.get(id)
         if (effectLayout) return effectLayout.rect
         const statusLayout = statusNodeRects.value.get(id)
@@ -4687,12 +4807,12 @@ export const useTimelineStore = defineStore('timeline', () => {
 
     return {
         MAX_SCENARIOS, toTimelineSpace, toViewportSpace, toGameTime, toRealTime, toggleNewCompiler,
-        systemConstants, isLoading, characterRoster, iconDatabase, tracks, connections, activeTrackId, timelineScrollTop, timelineShift, timelineRect, trackLaneRects, nodeRects, draggingSkillData,
+        systemConstants, isLoading, characterRoster, iconDatabase, tracks, connections, activeTrackId, timelineScrollTop, timelineShift, timelineRect, trackLaneRects, enemyStatusLaneRect, nodeRects, draggingSkillData,
         selectedActionId, selectedLibrarySkillId, selectedLibrarySource, selectedWeaponStatusId, multiSelectedIds, clipboard, isCapturing, setIsCapturing, showCursorGuide, isBoxSelectMode, cursorPosTimeline, cursorCurrentTime, cursorPosition, snapStep,
         selectedAnomalyId, setSelectedAnomalyId, updateTrackGaugeEfficiency,
         teamTracksInfo, activeSkillLibrary, activeWeaponSkillLibrary, BASE_BLOCK_WIDTH, setBaseBlockWidth, formatTimeLabel, ZOOM_LIMITS, timeBlockWidth, ELEMENT_COLORS, getCharacterElementColor, isActionSelected, hoveredActionId, setHoveredAction,
         fetchGameData, exportProject, importProject, exportShareString, importShareString, TOTAL_DURATION, selectTrack, changeTrackOperator, clearTrack, selectLibrarySkill, updateLibrarySkill, selectAction, updateAction, updateWeaponStatus,
-        addSkillToTrack, setDraggingSkill, setTimelineShift, setScrollTop, setTimelineRect, setTrackLaneRect, setNodeRect, calculateGlobalSpData, calculateGaugeData, getTrackGaugeMax, calculateGlobalStaggerData, updateTrackInitialGauge, updateTrackMaxGauge, updateTrackOriginiumArtsPower, updateTrackLinkCdReduction, updateTrackWeapon,
+        addSkillToTrack, setDraggingSkill, setTimelineShift, setScrollTop, setTimelineRect, setTrackLaneRect, setEnemyStatusLaneRect, setNodeRect, calculateGlobalSpData, calculateGaugeData, getTrackGaugeMax, calculateGlobalStaggerData, updateTrackInitialGauge, updateTrackMaxGauge, updateTrackOriginiumArtsPower, updateTrackLinkCdReduction, updateTrackWeapon,
         updateTrackWeaponTier, syncAllWeaponModifiers, getModifierLabel,
         removeConnection, updateConnection, updateConnectionPort, getColor, toggleCursorGuide, toggleBoxSelectMode, setCursorPosition, toggleSnapStep, nudgeSelection,
         setMultiSelection, clearSelection, copySelection, pasteSelection, removeCurrentSelection, undo, redo, commitState,
@@ -4708,7 +4828,7 @@ export const useTimelineStore = defineStore('timeline', () => {
         statusMap, getStatusById, statusNodeRects, statusConsumptionTimeById,
         enemyDatabase, activeEnemyId, applyEnemyPreset, ENEMY_TIERS, enemyCategories,
         scenarioList, activeScenarioId, switchScenario, addScenario, duplicateScenario, deleteScenario,
-        effectLayouts, getNodeRect, weaponDatabase, weaponOverrides, weaponStatuses, activeWeapon, getWeaponById, isWeaponSkillId, addWeaponStatus,
+        effectLayouts, enemyEffectLayouts, isEnemyEffectType, getNodeRect, weaponDatabase, weaponOverrides, weaponStatuses, activeWeapon, getWeaponById, isWeaponSkillId, addWeaponStatus,
         equipmentDatabase, equipmentCategories, equipmentCategoryConfigs, getEquipmentById, updateTrackEquipment, updateTrackEquipmentTier,
         equipmentCategoryOverrides, updateEquipmentCategoryOverride,
         activeSetBonusLibrary, addSetBonusStatus, getActiveSetBonusCategories,

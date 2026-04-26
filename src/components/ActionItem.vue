@@ -394,6 +394,11 @@ const renderableAnomalies = computed(() => {
 
   rows.forEach((row, rowIndex) => {
     row.forEach((effect, colIndex) => {
+      if (store.isEnemyEffectType(effect.type)) {
+        globalFlatIndex++
+        return
+      }
+
       const myEffectIndex = globalFlatIndex++
       const effectId = effect._id
       

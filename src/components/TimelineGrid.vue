@@ -30,6 +30,7 @@ const tracksContentRef = ref(null)
 const timeRulerWrapperRef = ref(null)
 const tracksHeaderRef = ref(null)
 const trackLaneRefs = ref([])
+const enemyStatusLaneRef = ref(null)
 
 // Render State
 const svgRenderKey = ref(0)
@@ -551,6 +552,147 @@ const setStatusesByTrack = computed(() => {
   map.forEach(arr => arr.sort((a, b) => a.startTime - b.startTime))
   return map
 })
+
+const enemyStatusItems = computed(() => {
+  const laneTop = store.enemyStatusLaneRect
+    ? store.enemyStatusLaneRect.top - store.timelineRect.top
+    : 0
+  const rawItems = []
+  store.enemyEffectLayouts.forEach((layout, effectId) => {
+    if (String(effectId).endsWith('_transfer')) return
+    if (!layout?.data) return
+    const left = Number(layout.rect.left) || 0
+    const barWidth = Number(layout.barData.width) || 0
+    const startTime = store.pxToTime(left)
+    rawItems.push({
+      effectId,
+      data: layout.data,
+      actionId: layout.actionId,
+      rowIndex: layout.rowIndex,
+      colIndex: layout.colIndex,
+      left,
+      top: layout.rect.top - laneTop,
+      startTime,
+      endLeft: left + 20 + 2 + barWidth,
+      style: {
+        left: `${left}px`,
+        top: `${layout.rect.top - laneTop}px`,
+      },
+      barWidth,
+      isConsumed: layout.barData.isConsumed,
+      displayDuration: layout.barData.displayDuration,
+      extensionAmount: layout.barData.extensionAmount,
+      stackCount: layout.stackCount || layout.data.stacks || 1,
+      sourceEffectIds: [effectId],
+    })
+  })
+
+  const isAttachType = (type) => typeof type === 'string' && type.endsWith('_attach')
+  const ATTACH_DURATION = 20
+  const ATTACH_MAX_STACKS = 4
+  const normalItems = rawItems.filter(item => !isAttachType(item.data.type))
+  const attachGroups = new Map()
+
+  rawItems
+    .filter(item => isAttachType(item.data.type))
+    .forEach(item => {
+      const arr = attachGroups.get(item.data.type) || []
+      arr.push(item)
+      attachGroups.set(item.data.type, arr)
+    })
+
+  const attachItems = []
+  attachGroups.forEach(group => {
+    group.sort((a, b) => a.startTime - b.startTime || a.effectId.localeCompare(b.effectId))
+    let activeEndTime = -Infinity
+    let activeStacks = 0
+
+    group.forEach((item, index) => {
+      const startTime = Number(item.startTime) || 0
+      if (startTime <= activeEndTime + 0.0001) {
+        activeStacks = Math.min(ATTACH_MAX_STACKS, activeStacks + (Number(item.data.stacks) || 1))
+      } else {
+        activeStacks = Math.min(ATTACH_MAX_STACKS, Number(item.data.stacks) || 1)
+      }
+
+      activeEndTime = startTime + ATTACH_DURATION
+      if (item.isConsumed && Number(item.displayDuration) > 0) {
+        activeEndTime = Math.min(activeEndTime, startTime + Number(item.displayDuration))
+      }
+
+      const next = group[index + 1]
+      let displayEndTime = activeEndTime
+      if (next) {
+        const nextStartTime = Number(next.startTime) || 0
+        if (nextStartTime <= activeEndTime + 0.0001) {
+          displayEndTime = nextStartTime
+        }
+      }
+
+      const endLeft = store.timeToPx(displayEndTime)
+      attachItems.push({
+        ...item,
+        endTime: displayEndTime,
+        endLeft,
+        barWidth: Math.max(0, endLeft - item.left - 22),
+        displayDuration: Math.max(0, snapMs(displayEndTime - startTime)),
+        stackCount: activeStacks,
+        isAttachAggregate: true,
+        sourceEffectIds: [item.effectId],
+      })
+    })
+  })
+
+  return [...normalItems, ...attachItems].sort((a, b) => a.top - b.top || a.left - b.left)
+})
+
+function getEnemyEffectIconPath(type) {
+  return store.iconDatabase[type] || store.iconDatabase.default || ''
+}
+
+function getEnemyEffectBarStyle(item) {
+  const color = store.getColor(item.data.type)
+  return {
+    width: `${item.barWidth}px`,
+    backgroundColor: color,
+    display: (item.displayDuration > 0 || item.data.duration > 0 || item.isConsumed || item.isAttachAggregate) ? 'flex' : 'none',
+  }
+}
+
+function getEnemyEffectDurationLabel(item) {
+  if (item.isAttachAggregate) return store.formatTimeLabel(item.displayDuration)
+  if (item.isConsumed) return store.formatTimeLabel(item.displayDuration)
+  const baseDuration = Math.max(0, Number(item.data.duration) || 0)
+  const extensionAmount = snapMs((Number(item.displayDuration) || 0) - baseDuration)
+  if (extensionAmount > 0.0001) {
+    return `${store.formatTimeLabel(baseDuration)} (+${store.formatTimeLabel(extensionAmount)})`
+  }
+  return store.formatTimeLabel(baseDuration)
+}
+
+function selectEnemyEffect(item) {
+  store.selectAnomaly(item.actionId, item.rowIndex, item.colIndex)
+}
+
+function handleEnemyEffectDragStart(event, item) {
+  if (!connectionHandler.toolEnabled.value || connectionHandler.isDragging.value) return
+  const rect = store.enemyEffectLayouts.get(item.effectId)?.rect
+  if (!rect) return
+  const timelinePoint = getRectPos(rect, 'right')
+  connectionHandler.newConnectionFrom(timelinePoint, item.effectId, 'right')
+}
+
+function handleEnemyEffectSnap(event, item) {
+  if (!connectionHandler.isNodeValid(item.effectId)) return
+  const rect = store.enemyEffectLayouts.get(item.effectId)?.rect
+  if (!rect) return
+  const timelinePoint = getRectPos(rect, 'left')
+  connectionHandler.snapTo(item.effectId, 'left', timelinePoint)
+}
+
+function handleEnemyEffectDrop(item) {
+  connectionHandler.endDrag(item.effectId, 'left')
+}
 
 function getWeaponStatusLeft(status) {
   const start = Number(status.startTime) || 0
@@ -1801,6 +1943,25 @@ function updateTrackRects() {
     }
     store.setTrackLaneRect(idx, data)
   })
+
+  if (enemyStatusLaneRef.value) {
+    const rect = enemyStatusLaneRef.value.getBoundingClientRect()
+    const style = window.getComputedStyle(enemyStatusLaneRef.value)
+    let borderTop = parseInt(style.borderTopWidth)
+    let borderBottom = parseInt(style.borderBottomWidth)
+
+    if (Number.isNaN(borderTop)) borderTop = 0
+    if (Number.isNaN(borderBottom)) borderBottom = 0
+
+    store.setEnemyStatusLaneRect({
+      top: rect.top + borderTop,
+      bottom: rect.bottom - borderBottom,
+      left: rect.left,
+      right: rect.right,
+      width: rect.width,
+      height: rect.height - borderTop - borderBottom
+    })
+  }
 }
 
 const activeFreezeRegions = computed(() => {
@@ -2096,6 +2257,10 @@ onUnmounted(() => {
         </div>
 
       </div>
+
+      <div class="enemy-status-track-info">
+        <div class="enemy-status-title">敌人状态</div>
+      </div>
     </div>
 
     <div class="tracks-content-viewport" ref="tracksContentRef" @mousedown="onContentMouseDown" @wheel="handleTrackWheel"
@@ -2299,6 +2464,52 @@ onUnmounted(() => {
                       <div class="transfer-node"></div>
                       <div class="transfer-line"></div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="enemy-status-row">
+            <div class="enemy-status-track-lane" :style="getTrackLaneStyle" ref="enemyStatusLaneRef">
+              <div
+                v-for="item in enemyStatusItems"
+                :key="item.effectId"
+                class="enemy-status-item"
+                :class="{ 'is-selected': item.sourceEffectIds?.includes(store.selectedAnomalyId) }"
+                :style="item.style"
+                :data-id="item.effectId"
+              >
+                <div
+                  :id="item.effectId"
+                  class="enemy-status-icon-box"
+                  :class="{ 'is-linking': connectionHandler.isDragging.value, 'is-link-target-valid': connectionHandler.isNodeValid(item.effectId) }"
+                  @mousedown.stop="handleEnemyEffectDragStart($event, item)"
+                  @mouseover.stop="handleEnemyEffectSnap($event, item)"
+                  @mouseup.stop="handleEnemyEffectDrop(item)"
+                  @mouseleave="connectionHandler.clearSnap()"
+                  @click.stop="selectEnemyEffect(item)"
+                >
+                  <img :src="getEnemyEffectIconPath(item.data.type)" class="enemy-status-icon" />
+                  <div v-if="item.stackCount > 1" class="enemy-status-stacks">{{ item.stackCount }}</div>
+                </div>
+
+                <div
+                  class="enemy-status-bar"
+                  v-if="!item.data.hideDuration"
+                  :style="getEnemyEffectBarStyle(item)"
+                  :class="{ 'is-consumed-bar': item.isConsumed }"
+                >
+                  <div class="striped-bg"></div>
+                  <span class="duration-text">{{ getEnemyEffectDurationLabel(item) }}</span>
+
+                  <div
+                    v-if="item.isConsumed"
+                    :id="`${item.effectId}_transfer`"
+                    class="transfer-node-wrapper"
+                  >
+                    <div class="transfer-node"></div>
+                    <div class="transfer-line"></div>
                   </div>
                 </div>
               </div>
@@ -3019,6 +3230,24 @@ body.capture-mode .davinci-range {
   border-right: 3px solid #ffd700;
 }
 
+.enemy-status-track-info {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2f3438;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+}
+
+.enemy-status-title {
+  color: #d7e2ea;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
 .char-select-trigger {
   display: flex;
   flex-direction: column;
@@ -3484,6 +3713,140 @@ body.capture-mode .davinci-range {
   border-top: 2px dashed #c0c0c0;
   border-bottom: 2px dashed #c0c0c0;
   z-index: 1;
+}
+
+.enemy-status-row {
+  position: relative;
+  min-height: 54px;
+  width: fit-content;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(45, 55, 62, 0.5);
+}
+
+.enemy-status-track-lane {
+  position: relative;
+  height: 54px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.025);
+  overflow: visible;
+}
+
+.enemy-status-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.enemy-status-icon-box {
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.1s, border-color 0.1s, box-shadow 0.2s;
+}
+
+.enemy-status-icon-box:hover {
+  border-color: #ffd700;
+  transform: scale(1.15);
+  z-index: 20;
+}
+
+.enemy-status-icon-box.is-linking {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.enemy-status-icon-box.is-linking.is-link-target-valid {
+  opacity: 1;
+  pointer-events: auto;
+  border-color: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.enemy-status-item.is-selected .enemy-status-icon-box {
+  border-color: #ffd700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.65);
+}
+
+.enemy-status-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.enemy-status-stacks {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+  font-size: 8px;
+  padding: 0 2px;
+  line-height: 1;
+  border-radius: 2px;
+}
+
+.enemy-status-bar {
+  height: 16px;
+  border: none;
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  margin-left: 2px;
+}
+
+.enemy-status-bar.is-consumed-bar {
+  opacity: 0.9;
+}
+
+.enemy-status-bar .striped-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  pointer-events: none;
+}
+
+.enemy-status-bar .duration-text {
+  position: absolute;
+  left: 4px;
+  font-size: 11px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  font-weight: bold;
+  line-height: 1;
+  font-family: sans-serif;
+  white-space: nowrap;
 }
 
 .actions-container {
